@@ -3,6 +3,7 @@ import { BoldOutlined, UserOutlined, SearchOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Col, Row } from 'antd'
 import { getAllData } from '../Axios'
 import CreateModal from '../Components/Search/CreateUser/CreateModal'
+import MoreFeatures from '../Components/Search/MoreFeatures/MoreFeatures'
 import { SearchData } from '../Axios'
 
 const style = {
@@ -77,6 +78,7 @@ const Search = props => {
         <Col span={6}>
           <div style={{ textAlign: 'right' }}>
             <CreateModal />
+            <MoreFeatures/>
           </div>
         </Col>
       </Row>

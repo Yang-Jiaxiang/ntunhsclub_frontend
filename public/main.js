@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const fs = require('fs')
 
 const path = require('path')
 const isDev = require('electron-is-dev')

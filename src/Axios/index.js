@@ -54,3 +54,13 @@ export const SearchData = async (id, name) => {
     console.log(e)
   }
 }
+
+export const downloadExampleCsv = async () => {
+  try {
+    const response = await axios.get(window.env.API_SERVER + '/upload/example')
+    //console.log(response.data.results)
+    return response.data.results
+  } catch (e) {
+    console.log(e)
+  }
+}

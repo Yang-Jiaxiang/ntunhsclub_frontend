@@ -14,131 +14,12 @@ import { putData } from '../../Axios'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
 import localeData from 'dayjs/plugin/localeData'
+import { ClubSqlLabel } from '../../ClubSqlLabel'
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
 
-const label = [
-  {
-    title: '姓名',
-    dataIndex: 'Name',
-    key: 'Name',
-    fixed: 'left',
-    type: 'text'
-  },
-  {
-    title: '身分證',
-    dataIndex: 'tID',
-    key: 'tID',
-    type: 'text'
-  },
-  {
-    title: '學校老師',
-    dataIndex: 'School',
-    key: 'School',
-    type: 'selection',
-    selection: [
-      { label: '1', value: '校內' },
-      { label: '0', value: '校外' }
-    ]
-  },
-  {
-    title: '連絡電話',
-    dataIndex: 'Phone',
-    key: 'Phone',
-    type: 'text'
-  },
-  {
-    title: '信箱',
-    dataIndex: 'Email',
-    key: 'Email',
-    type: 'email'
-  },
-  {
-    title: '銀行帳號',
-    dataIndex: 'BankAccount',
-    key: 'BankAccount',
-    type: 'number'
-  },
-  {
-    title: '銀行名稱',
-    dataIndex: 'BankName',
-    key: 'BankName',
-    type: 'text'
-  },
-  {
-    title: '戶籍地',
-    dataIndex: 'Residence',
-    key: 'Residence',
-    type: 'text'
-  },
-  {
-    title: '住址',
-    dataIndex: 'Dwelling',
-    key: 'Dwelling',
-    type: 'text'
-  },
-  {
-    title: '付款單位',
-    dataIndex: 'Unit',
-    key: 'Unit',
-    type: 'text'
-  },
-  {
-    title: '總金額',
-    dataIndex: 'UnitSum',
-    key: 'UnitSum',
-    type: 'number'
-  },
-  {
-    title: '價錢',
-    dataIndex: 'Price',
-    key: 'Price',
-    type: 'number'
-  },
-  {
-    title: '代扣所得稅',
-    dataIndex: 'Customs',
-    key: 'Customs',
-    type: 'number'
-  },
-  {
-    title: '免稅給付',
-    dataIndex: 'Ncustoms',
-    key: 'Ncustoms',
-    type: 'text'
-  },
-  {
-    title: '出生',
-    dataIndex: 'Birthday',
-    key: 'Birthday',
-    type: 'dateTime'
-  },
-  {
-    title: '學校老師地址',
-    dataIndex: 'SchoolClass',
-    key: 'SchoolClass',
-    type: 'text'
-  },
-  {
-    title: '學歷',
-    dataIndex: 'AcademicQualifications',
-    key: 'AcademicQualifications',
-    type: 'text'
-  },
-  {
-    title: '經歷',
-    dataIndex: 'Experience',
-    key: 'Experience',
-    type: 'text'
-  },
-  {
-    title: '異動狀態',
-    dataIndex: 'ChangeState',
-    key: 'ChangeState',
-    type: 'text'
-  }
-]
+const label = ClubSqlLabel
 
 const ActionModal = props => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -189,6 +70,7 @@ const ActionModal = props => {
       >
         <Switch onChange={onChange} />
         {label.map((item, index) => {
+          console.log(data)
           return (
             <table width="100%">
               <tr>
@@ -198,14 +80,18 @@ const ActionModal = props => {
                     <Select
                       placeholder="Select a option and change input text above"
                       onChange={e => {
-                        setData({ ...data, [item.key]: e })
+                        setData({ ...data, [item.key]: parseInt(e) })
                       }}
                       style={{
                         marginTop: '10px',
                         width: '100%',
                         width: '100%'
                       }}
-                      value={item.value === '1' ? '校內' : '校外'}
+                      value={
+                        data[item.key] === 1
+                          ? item.selection[0].value
+                          : item.selection[1].value
+                      }
                       allowClear
                       disabled={!isUpdate}
                     >
@@ -228,7 +114,7 @@ const ActionModal = props => {
                       }}
                       defaultValue={dayjs(data[item.key], 'yyyy-mm-dd')}
                       onChange={e => setData({ ...data, [item.key]: e._d })}
-                      />
+                    />
                   ) : null}
                   {item.type === 'text' || item.type === 'email' ? (
                     <Input
