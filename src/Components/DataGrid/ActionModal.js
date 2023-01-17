@@ -70,7 +70,6 @@ const ActionModal = props => {
       >
         <Switch onChange={onChange} />
         {label.map((item, index) => {
-          console.log(data)
           return (
             <table width="100%">
               <tr>

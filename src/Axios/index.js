@@ -64,3 +64,23 @@ export const downloadExampleCsv = async () => {
     console.log(e)
   }
 }
+
+export const upLoadCsv = async data => {
+  try {
+    const response = await axios.post(
+      window.env.API_SERVER + '/upload/excelToJson',
+      {
+        file: data
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    )
+    console.log(response)
+    //return response.data.results
+  } catch (e) {
+    console.log(e)
+  }
+}
