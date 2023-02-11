@@ -78,7 +78,7 @@ const Search = props => {
         <Col span={6}>
           <div style={{ textAlign: 'right' }}>
             <CreateModal />
-            <MoreFeatures/>
+            <MoreFeatures />
           </div>
         </Col>
       </Row>

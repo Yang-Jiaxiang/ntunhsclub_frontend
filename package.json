@@ -32,6 +32,7 @@
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "format": "prettier --write \"**/*.+(js|json)\"",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
     "electron:start": "wait-on tcp:3000 && electron ."
