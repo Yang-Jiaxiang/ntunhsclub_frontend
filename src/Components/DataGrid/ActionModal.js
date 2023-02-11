@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  Button,
-  Space,
-  Input,
-  Select,
-  Modal,
-  Switch,
-  message,
-  DatePicker,
-  InputNumber
-} from 'antd'
+import { Button, Space, Input, Select, Modal, Switch, message, DatePicker, InputNumber } from 'antd'
 import { putData } from '../../Axios'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
@@ -21,7 +11,7 @@ dayjs.extend(localeData)
 
 const label = ClubSqlLabel
 
-const ActionModal = props => {
+const ActionModal = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const [messageApi, contextHolder] = message.useMessage()
@@ -37,7 +27,7 @@ const ActionModal = props => {
   const success = () => {
     messageApi.open({
       type: 'success',
-      content: '更新成功'
+      content: '更新成功',
     })
   }
   const showModal = () => {
@@ -55,19 +45,14 @@ const ActionModal = props => {
     setIsModalOpen(false)
   }
 
-  const onChange = checked => {
+  const onChange = (checked) => {
     setIsUpdate(checked)
   }
   return (
     <>
       {contextHolder}
       <a onClick={showModal}>顯示更多</a>
-      <Modal
-        title="顯示更多"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <Modal title="顯示更多" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Switch onChange={onChange} />
         {label.map((item, index) => {
           return (
@@ -78,19 +63,15 @@ const ActionModal = props => {
                   {item.type === 'selection' ? (
                     <Select
                       placeholder="Select a option and change input text above"
-                      onChange={e => {
+                      onChange={(e) => {
                         setData({ ...data, [item.key]: parseInt(e) })
                       }}
                       style={{
                         marginTop: '10px',
                         width: '100%',
-                        width: '100%'
+                        width: '100%',
                       }}
-                      value={
-                        data[item.key] === 1
-                          ? item.selection[0].value
-                          : item.selection[1].value
-                      }
+                      value={data[item.key] === 1 ? item.selection[0].value : item.selection[1].value}
                       allowClear
                       disabled={!isUpdate}
                     >
@@ -109,10 +90,10 @@ const ActionModal = props => {
                       style={{
                         marginTop: '10px',
                         width: '100%',
-                        width: '100%'
+                        width: '100%',
                       }}
                       defaultValue={dayjs(data[item.key], 'yyyy-mm-dd')}
-                      onChange={e => setData({ ...data, [item.key]: e._d })}
+                      onChange={(e) => setData({ ...data, [item.key]: e._d })}
                     />
                   ) : null}
                   {item.type === 'text' || item.type === 'email' ? (
@@ -120,7 +101,7 @@ const ActionModal = props => {
                       disabled={!isUpdate}
                       value={data[item.key]}
                       style={{ marginTop: '10px', width: '100%' }}
-                      onChange={e => {
+                      onChange={(e) => {
                         setData({ ...data, [item.key]: e.target.value })
                       }}
                     />
@@ -131,10 +112,10 @@ const ActionModal = props => {
                       style={{
                         marginTop: '10px',
                         width: '100%',
-                        width: '100%'
+                        width: '100%',
                       }}
                       value={data[item.key]}
-                      onChange={e => setData({ ...data, [item.key]: e })}
+                      onChange={(e) => setData({ ...data, [item.key]: e })}
                     />
                   ) : null}
                 </td>

@@ -12,10 +12,7 @@ export const getAllData = async () => {
 
 export const putData = async (id, data) => {
   try {
-    const response = await axios.patch(
-      window.env.API_SERVER + '/lecturer/' + id,
-      data
-    )
+    const response = await axios.patch(window.env.API_SERVER + '/lecturer/' + id, data)
     //console.log(response.data.results)
     return response.data.results
   } catch (e) {
@@ -23,7 +20,7 @@ export const putData = async (id, data) => {
   }
 }
 
-export const postData = async data => {
+export const postData = async (data) => {
   try {
     const response = await axios.post(window.env.API_SERVER + '/lecturer', data)
     //console.log(response.data.results)
@@ -65,17 +62,17 @@ export const downloadExampleCsv = async () => {
   }
 }
 
-export const upLoadCsv = async data => {
+export const upLoadCsv = async (data) => {
   try {
     const response = await axios.post(
       window.env.API_SERVER + '/upload/excelToJson',
       {
-        file: data
+        file: data,
       },
       {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       }
     )
     console.log(response)

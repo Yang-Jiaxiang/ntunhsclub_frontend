@@ -1,13 +1,9 @@
 import React, { useState, useRef } from 'react'
-import {
-  DownOutlined,
-  DownloadOutlined,
-  CloudUploadOutlined
-} from '@ant-design/icons'
+import { DownOutlined, DownloadOutlined, CloudUploadOutlined } from '@ant-design/icons'
 import { Button, Dropdown, message, Space, Tooltip } from 'antd'
 import { downloadExampleCsv, upLoadCsv } from '../../../Axios'
 
-const handleButtonClick = e => {
+const handleButtonClick = (e) => {
   message.info('Click on left button.')
   console.log('click left button', e)
 }
@@ -20,7 +16,7 @@ const MoreFeatures = () => {
    * @param {*} e 該事件的參數
    * @returns void
    */
-  const handleMenuClick = e => {
+  const handleMenuClick = (e) => {
     switch (e.key) {
       case '1':
         message.info('上傳資料檔案')
@@ -40,21 +36,21 @@ const MoreFeatures = () => {
       label: '上傳資料檔案',
       key: '1',
       icon: <CloudUploadOutlined />,
-      danger: true
+      danger: true,
     },
     {
       label: '下載範例檔案',
       key: '2',
-      icon: <DownloadOutlined />
-    }
+      icon: <DownloadOutlined />,
+    },
   ]
 
   const menuProps = {
     items,
-    onClick: handleMenuClick
+    onClick: handleMenuClick,
   }
 
-  const handleFileSelect = event => {
+  const handleFileSelect = (event) => {
     upLoadCsv(event.target.files[0])
   }
 

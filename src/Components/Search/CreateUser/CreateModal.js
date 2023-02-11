@@ -1,16 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Button,
-  Modal,
-  InputNumber,
-  Form,
-  Input,
-  message,
-  Space,
-  Select,
-  DatePicker,
-  TimePicker
-} from 'antd'
+import { Button, Modal, InputNumber, Form, Input, message, Space, Select, DatePicker, TimePicker } from 'antd'
 
 import { UserAddOutlined } from '@ant-design/icons'
 import { postData } from '../../../Axios/index.js'
@@ -27,7 +16,7 @@ const CreateModal = () => {
   const success = () => {
     messageApi.open({
       type: 'success',
-      content: '成功新增'
+      content: '成功新增',
     })
   }
   const showModal = () => {
@@ -36,13 +25,13 @@ const CreateModal = () => {
   const handleCancel = () => {
     setIsModalOpen(false)
   }
-  const onFinish = values => {
+  const onFinish = (values) => {
     console.log(data)
     setIsModalOpen(false)
     postData(data)
     success()
   }
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
@@ -52,22 +41,17 @@ const CreateModal = () => {
       <Button icon={<UserAddOutlined />} onClick={showModal}>
         新增
       </Button>
-      <Modal
-        title="新增教師"
-        open={isModalOpen}
-        footer={null}
-        onCancel={handleCancel}
-      >
+      <Modal title="新增教師" open={isModalOpen} footer={null} onCancel={handleCancel}>
         <Form
           name="basic"
           labelCol={{
-            span: 6
+            span: 6,
           }}
           wrapperCol={{
-            span: 16
+            span: 16,
           }}
           initialValues={{
-            remember: true
+            remember: true,
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -82,13 +66,13 @@ const CreateModal = () => {
                   rules={[
                     {
                       required: true,
-                      message: `Please input ${item.title}`
-                    }
+                      message: `Please input ${item.title}`,
+                    },
                   ]}
                 >
                   <Select
                     placeholder="Select a option and change input text above"
-                    onChange={e => {
+                    onChange={(e) => {
                       setData({ ...data, [item.key]: e })
                     }}
                     allowClear
@@ -112,14 +96,11 @@ const CreateModal = () => {
                   rules={[
                     {
                       required: true,
-                      message: `Please input ${item.title}`
-                    }
+                      message: `Please input ${item.title}`,
+                    },
                   ]}
                 >
-                  <DatePicker
-                    style={{ width: '100%' }}
-                    onChange={e => setData({ ...data, [item.key]: e._d })}
-                  />
+                  <DatePicker style={{ width: '100%' }} onChange={(e) => setData({ ...data, [item.key]: e._d })} />
                 </Form.Item>
               )
             }
@@ -131,14 +112,11 @@ const CreateModal = () => {
                   rules={[
                     {
                       required: true,
-                      message: `Please input ${item.title}`
-                    }
+                      message: `Please input ${item.title}`,
+                    },
                   ]}
                 >
-                  <InputNumber
-                    style={{ width: '100%' }}
-                    onChange={e => setData({ ...data, [item.key]: e })}
-                  />
+                  <InputNumber style={{ width: '100%' }} onChange={(e) => setData({ ...data, [item.key]: e })} />
                 </Form.Item>
               )
             }
@@ -150,16 +128,11 @@ const CreateModal = () => {
                   rules={[
                     {
                       required: true,
-                      message: `Please input ${item.title}`
-                    }
+                      message: `Please input ${item.title}`,
+                    },
                   ]}
                 >
-                  <Input
-                    type={item.type}
-                    onChange={e =>
-                      setData({ ...data, [item.key]: e.target.value })
-                    }
-                  />
+                  <Input type={item.type} onChange={(e) => setData({ ...data, [item.key]: e.target.value })} />
                 </Form.Item>
               )
             }
@@ -167,7 +140,7 @@ const CreateModal = () => {
           <Form.Item
             wrapperCol={{
               offset: 8,
-              span: 16
+              span: 16,
             }}
           >
             <Button type="primary" htmlType="submit">
