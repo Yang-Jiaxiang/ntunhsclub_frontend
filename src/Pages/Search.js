@@ -4,6 +4,7 @@ import { Button, Form, Input, Col, Row } from 'antd'
 import { getAllData } from '../Axios'
 import CreateModal from '../Components/Search/CreateUser/CreateModal'
 import MoreFeatures from '../Components/Search/MoreFeatures/MoreFeatures'
+import DownloadAll from '../Components/Search/DownloadAll/DownloadAll'
 import { SearchData } from '../Axios'
 
 const style = {
@@ -43,7 +44,7 @@ const Search = (props) => {
   return (
     <div style={style}>
       <Row>
-        <Col span={18}>
+        <Col span={14}>
           <div>
             <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
               <Form.Item name="ID">
@@ -60,9 +61,10 @@ const Search = (props) => {
             </Form>
           </div>
         </Col>
-        <Col span={6}>
+        <Col span={10}>
           <div style={{ textAlign: 'right' }}>
             <CreateModal />
+            <DownloadAll />
             <MoreFeatures />
           </div>
         </Col>

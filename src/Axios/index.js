@@ -81,3 +81,13 @@ export const upLoadCsv = async (data) => {
     console.log(e)
   }
 }
+
+export const downloadAll = async () => {
+  try {
+    const response = await axios.get(window.env.API_SERVER + '/upload/downloadAll')
+    //console.log(response.data.results)
+    return response.data.results
+  } catch (e) {
+    console.log(e)
+  }
+}

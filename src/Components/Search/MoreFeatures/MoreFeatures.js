@@ -65,7 +65,7 @@ const MoreFeatures = () => {
         style={{ display: 'none' }}
       />
       <Dropdown menu={menuProps}>
-        <Button style={{ marginLeft: '10px' }}>
+        <Button>
           <Space>
             更多
             <DownOutlined />
