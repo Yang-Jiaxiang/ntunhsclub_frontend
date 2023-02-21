@@ -56,7 +56,7 @@ const ActionModal = (props) => {
         <Switch onChange={onChange} />
         {label.map((item, index) => {
           return (
-            <table width="100%">
+            <table width="100%" key={item.title}>
               <tr>
                 <td width="30%">{item.title}</td>
                 <td width="70%">
