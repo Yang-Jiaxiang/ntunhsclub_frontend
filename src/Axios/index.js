@@ -20,6 +20,16 @@ export const putData = async (id, data) => {
   }
 }
 
+export const deleteData = async (id) => {
+  try {
+    const response = await axios.delete(window.env.API_SERVER + '/lecturer/' + id)
+    //console.log(response.data.results)
+    return response.data.results
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const postData = async (data) => {
   try {
     const response = await axios.post(window.env.API_SERVER + '/lecturer', data)

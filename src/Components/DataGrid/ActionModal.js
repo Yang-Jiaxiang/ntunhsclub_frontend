@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Space, Input, Select, Modal, Switch, message, DatePicker, InputNumber } from 'antd'
-import { putData } from '../../Axios'
+import { putData, deleteData } from '../../Axios'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
 import localeData from 'dayjs/plugin/localeData'
 import { ClubSqlLabel } from '../../ClubSqlLabel'
+import { DeleteOutlined } from '@ant-design/icons'
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -15,7 +16,7 @@ const ActionModal = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const [messageApi, contextHolder] = message.useMessage()
-
+  const [deleteClick, setDeleteClick] = useState(false)
   const [data, setData] = useState({})
 
   const { Option } = Select
@@ -29,13 +30,14 @@ const ActionModal = (props) => {
       type: 'success',
       content: '更新成功',
     })
+    props.setOnChange(props.onChange + 1)
   }
   const showModal = () => {
     setIsModalOpen(true)
   }
   const handleOk = () => {
     setIsModalOpen(false)
-
+    deleteClick && deleteData(data.ID)
     if (isUpdate) {
       putData(data.ID, data)
       success()
@@ -54,9 +56,10 @@ const ActionModal = (props) => {
       <a onClick={showModal}>顯示更多</a>
       <Modal title="顯示更多" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <Switch onChange={onChange} />
-        {label.map((item, index) => {
-          return (
-            <table width="100%" key={item.title}>
+
+        <table width="100%">
+          {label.map((item, index) => {
+            return (
               <tr>
                 <td width="30%">{item.title}</td>
                 <td width="70%">
@@ -120,9 +123,22 @@ const ActionModal = (props) => {
                   ) : null}
                 </td>
               </tr>
-            </table>
-          )
-        })}
+            )
+          })}
+          <tr td width="100%">
+            <td width="30%">刪除使用者</td>
+            <td width="70%" style={{ textAlign: 'right' }}>
+              <Button
+                type="primary"
+                danger
+                shape="circle"
+                icon={<DeleteOutlined />}
+                disabled={!isUpdate}
+                onClick={() => setDeleteClick(true)}
+              />
+            </td>
+          </tr>
+        </table>
       </Modal>
     </>
   )
